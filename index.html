@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica de Estética - Zarah Flor | Clínicas de estética em São Paulo - SP — 5⭐</title>
+    <meta name="description" content="Clínica de Estética - Zarah Flor — Clínicas de estética em São Paulo - SP. 351 avaliações no Google ⭐. Agende: +55 11 97065-3411">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#C5A059',
+                            light: '#D4AF37',
+                            dark: '#A6823B'
+                        },
+                        dark: '#1A1A1A',
+                        marble: '#FAF9F6'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Cursor */
+        body { cursor: none; }
+        
+        .custom-cursor {
+            width: 20px; height: 20px;
+            border: 2px solid #C5A059; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transition: transform 0.2s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+        
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(2.5);
+            background-color: rgba(197, 160, 89, 0.2);
+        }
+
+        .marble-bg {
+            background-color: #FAF9F6;
+            background-image: radial-gradient(circle at 100% 50%, transparent 20%, rgba(197, 160, 89, 0.05) 21%, rgba(197, 160, 89, 0.05) 34%, transparent 35%, transparent),
+                              radial-gradient(circle at 0% 50%, transparent 20%, rgba(197, 160, 89, 0.05) 21%, rgba(197, 160, 89, 0.05) 34%, transparent 35%, transparent);
+            background-size: 100px 100px;
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .glass-dark {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .rounded-asymmetric { border-radius: 40px 10px 40px 10px; }
+
+        /* CSS Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+        @keyframes shine {
+            0% { left: -150%; }
+            15% { left: 200%; }
+            100% { left: 200%; }
+        }
+        
+        /* Stop scroll while loading */
+        body.loading {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-marble-bg antialiased overflow-x-hidden loading">
+
+    <!-- Loading Screen -->
+    <div id="loader" class="fixed inset-0 z-[10000] bg-marble-bg flex flex-col items-center justify-center transition-opacity duration-1000 ease-in-out">
+        <div class="relative w-28 h-28 flex items-center justify-center">
+            <!-- Spinning Gold Rings -->
+            <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-gold animate-spin" style="animation-duration: 2s;"></div>
+            <div class="absolute inset-2 rounded-full border-b-2 border-l-2 border-gold/40 animate-spin" style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+            <!-- Logo Icon Inside -->
+            <img src="./images/logo.png" alt="Carregando..." class="w-16 h-16 object-contain animate-pulse duration-1000">
+        </div>
+        <span class="mt-8 text-gold font-serif text-sm tracking-[0.4em] uppercase animate-pulse">Experiência Zarah Flor</span>
+    </div>
+
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 glass shadow-sm transition-all duration-300 py-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center min-h-[5rem]">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="hoverable block py-1">
+                        <img src="./images/logo.png" alt="Zarah Flor Logo" class="h-12 md:h-[60px] w-auto object-contain drop-shadow-sm transition-all duration-300">
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#servicos" class="text-gray-700 hover:text-gold transition text-sm font-medium uppercase tracking-wider hoverable">Serviços</a>
+                    <a href="#galeria" class="text-gray-700 hover:text-gold transition text-sm font-medium uppercase tracking-wider hoverable">Galeria</a>
+                    <a href="#sobre" class="text-gray-700 hover:text-gold transition text-sm font-medium uppercase tracking-wider hoverable">Sobre Nós</a>
+                    <a href="#avaliacoes" class="text-gray-700 hover:text-gold transition text-sm font-medium uppercase tracking-wider hoverable">Avaliações</a>
+                    <a href="#contato" class="text-gray-700 hover:text-gold transition text-sm font-medium uppercase tracking-wider hoverable">Contato</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/5511970653411" target="_blank" 
+                       class="bg-dark text-white px-6 py-2.5 rounded-full hover:bg-gold transition duration-300 shadow-md font-medium text-sm hoverable flex items-center gap-2 btn-shine">
+                        <span>Agendar</span>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gold focus:outline-none hoverable">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#servicos" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold">Serviços</a>
+                <a href="#galeria" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold">Galeria</a>
+                <a href="#sobre" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold">Sobre Nós</a>
+                <a href="#avaliacoes" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold">Avaliações</a>
+                <a href="#contato" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gold">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-20 min-h-[85vh] flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="lg:w-1/2" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="800">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass shadow-sm border border-gold/30 mb-6">
+                        <div class="flex text-gold">
+                            ★ ★ ★ ★ ★
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Nota 5.0 no Google</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif text-dark leading-tight mb-6">
+                        Realce sua beleza com <span class="italic text-gold">quem mais entende</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-xl font-light" data-aos="fade-up" data-aos-delay="1000">
+                        Clínica de Estética Zarah Flor — tratamentos muito exclusivos, resultados visíveis e um ambiente focado no seu absoluto bem-estar.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="1200">
+                        <a href="https://wa.me/5511970653411" target="_blank"
+                           class="btn-shine bg-gold text-white px-8 py-4 rounded-full text-center font-medium shadow-xl shadow-gold/40 hover:bg-gold-dark transition duration-300 flex items-center justify-center gap-2 text-lg hoverable hover:scale-105 border border-white/20">
+                            <!-- SVG WhatsApp -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23-7.4,11.1a8,8,0,0,0-.69,8.73A56.6,56.6,0,0,0,125.71,146a8,8,0,0,0,8.73-.69l11.1-7.4,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"></path></svg>
+                            Agendar avaliação
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image with Fade Effect -->
+                <div class="lg:w-1/2 relative flex justify-center items-end h-[50vh] lg:h-[75vh]" data-aos="zoom-in-left" data-aos-duration="1500" data-aos-delay="600">
+                    
+                    <!-- Hover Group Container -->
+                    <div class="relative h-full w-full flex justify-center items-end group hover:scale-[1.02] transition-transform duration-700">
+                        <img src="./images/hero-image.png" alt="Zarah Flor Especialista" class="max-h-[101%] lg:max-h-[101%] object-contain relative z-20">
+                        
+                        <!-- White Gradient Fade Out for Depth -->
+                        <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent z-30 pointer-events-none transition-transform duration-700"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="bg-white relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-serif text-dark">Nossos Diferenciais</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-8 rounded-asymmetric glass hover:shadow-xl transition duration-500 hover:-translate-y-2 hoverable" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M239.38,103.22l-64.84-25-25-64.84a16,16,0,0,0-29.69,0l-25,64.84-64.84,25a16,16,0,0,0,0,29.69l64.84,25,25,64.84a16,16,0,0,0,29.69,0l25-64.84,64.84-25a16,16,0,0,0,0-29.69ZM154.51,139a15.86,15.86,0,0,0-9.52,9.52l-17,44-17-44a15.86,15.86,0,0,0-9.52-9.52l-44-17,44-17a15.86,15.86,0,0,0,9.52-9.52l17-44,17,44a15.86,15.86,0,0,0,9.52,9.52l44,17Z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3">Atendimento Único</h3>
+                    <p class="text-gray-500 text-sm">Protocolos criados especificamente para as necessidades da sua pele.</p>
+                </div>
+                <div class="text-center p-8 rounded-asymmetric glass hover:shadow-xl transition duration-500 hover:-translate-y-2 hoverable" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M224,112.35V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V112.35A16,16,0,0,1,39.69,98.67l80-64a16,16,0,0,1,19.95,0l80,64A16,16,0,0,1,224,112.35ZM124,136a8,8,0,0,0,8,8h24.81l-14,24.57A8,8,0,1,0,156.77,176l24-42.1A8,8,0,0,0,173.81,120H132A8,8,0,0,0,124,136Z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3">Certificação</h3>
+                    <p class="text-gray-500 text-sm">Profissionais em constante atualização nas melhores técnicas mundiais.</p>
+                </div>
+                <div class="text-center p-8 rounded-asymmetric glass hover:shadow-xl transition duration-500 hover:-translate-y-2 hoverable" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M174,22.11a134.78,134.78,0,0,0-92,0A16,16,0,0,0,72.48,35.61C57.48,80.65,58,119.78,74.79,152a83.1,83.1,0,0,0,32.08,35.68A60.84,60.84,0,0,0,128,216a60.84,60.84,0,0,0,21.13-3.79A83.1,83.1,0,0,0,181.21,152c16.83-32.22,17.31-71.35,2.31-116.39A16,16,0,0,0,174,22.11ZM167.09,144.62c-8.81,16.87-21,29.35-39.09,34.42V136a8,8,0,0,0-16,0v43.08c-18.1-5.07-30.28-17.55-39.09-34.42-14.73-28.21-14.47-62.88-1.57-104l.11-.32a3.84,3.84,0,0,1,1.52-1.92A118.9,118.9,0,0,1,128,32a118.9,118.9,0,0,1,55,25.75,3.84,3.84,0,0,1,1.52,1.92l.11.32C197.52,100.15,197.77,134.82,167.09,144.62Z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3">Produtos Premium</h3>
+                    <p class="text-gray-500 text-sm">Dermocosméticos de luxo e equipamentos aprovados pela ANVISA.</p>
+                </div>
+                <div class="text-center p-8 rounded-asymmetric glass hover:shadow-xl transition duration-500 hover:-translate-y-2 hoverable" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 mx-auto bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM144,112v88H112V112ZM48,56H208v40H48ZM48,200V112H96v88Zm160,0H160V112h48v88Z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3">Ambiente Exclusivo</h3>
+                    <p class="text-gray-500 text-sm">Um spa luxuoso e climatizado, focado na sua melhor experiência.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="bg-marble-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-in">
+                <span class="text-gold font-medium tracking-widest uppercase text-sm">Nossos Tratamentos</span>
+                <h2 class="text-3xl md:text-5xl font-serif mt-2 mb-4">Estética & Laser</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass rounded-asymmetric overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="./images/galeria-4.jpg" alt="Limpeza de Pele" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition duration-300"></div>
+                    </div>
+                    <div class="p-8 flex-grow relative bg-white/60">
+                        <h3 class="font-serif text-2xl font-medium mb-3">Limpeza de Pele</h3>
+                        <p class="text-gray-600 text-sm mb-6">Remoção profunda de impurezas, cravos e células mortas, devolvendo o viço da pele.</p>
+                        <div class="text-gold font-medium mt-auto mb-4">A partir de R$ 150</div>
+                        <a href="https://wa.me/5511970653411" target="_blank" class="text-dark hover:text-gold text-sm font-medium flex items-center gap-2 transition hoverable">
+                            Agendar serviço <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass rounded-asymmetric overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="./images/galeria-1.jpg" alt="Depilação a Laser" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition duration-300"></div>
+                    </div>
+                    <div class="p-8 flex-grow relative bg-white/60">
+                        <h3 class="font-serif text-2xl font-medium mb-3">Depilação a Laser</h3>
+                        <p class="text-gray-600 text-sm mb-6">Remoção definitiva de pelos com tecnologia confortável, segura e eficaz.</p>
+                        <div class="text-gold font-medium mt-auto mb-4">Sob consulta</div>
+                        <a href="https://wa.me/5511970653411" target="_blank" class="text-dark hover:text-gold text-sm font-medium flex items-center gap-2 transition hoverable">
+                            Agendar serviço <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass rounded-asymmetric overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 group flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="./images/galeria-2.jpg" alt="Botox" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition duration-300"></div>
+                    </div>
+                    <div class="p-8 flex-grow relative bg-white/60">
+                        <h3 class="font-serif text-2xl font-medium mb-3">Toxina Botulínica</h3>
+                        <p class="text-gray-600 text-sm mb-6">Suavização de rugas prevenindo o envelhecimento com resultados muito naturais.</p>
+                        <div class="text-gold font-medium mt-auto mb-4">A partir de R$ 900</div>
+                        <a href="https://wa.me/5511970653411" target="_blank" class="text-dark hover:text-gold text-sm font-medium flex items-center gap-2 transition hoverable">
+                            Agendar serviço <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 relative" data-aos="fade-right">
+                    <div class="relative rounded-asymmetric overflow-hidden aspect-[4/5] shadow-2xl">
+                        <img src="./images/galeria-2.jpg" alt="Profissional" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 border border-white/20 rounded-asymmetric"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gold/20 rounded-full blur-2xl -z-10"></div>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <span class="text-gold font-medium tracking-widest uppercase text-sm">Nossa Essência</span>
+                    <h2 class="text-4xl md:text-5xl font-serif mt-2 mb-8 leading-tight">Acreditamos que a beleza é a <span class="italic text-gold">sua melhor versão</span></h2>
+                    
+                    <div class="space-y-6 text-gray-600 mb-10 text-lg font-light">
+                        <p>A Clínica Zarah Flor nasceu do desejo de proporcionar não apenas tratamentos estéticos, mas uma experiência completa de cuidado e renovação de autoestima no coração da Bela Vista.</p>
+                        <p>Nosso espaço foi minuciosamente planejado para que você sinta o luxo e o conforto desde o primeiro momento. Contamos com tecnologia de ponta e protocolos muito exclusivos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato com Background Linear de Cor -->
+    <section id="contato" class="relative bg-gradient-to-br from-marble via-white to-gold/15">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full relative z-10">
+            <div class="text-center mb-16" data-aos="fade-in">
+                <span class="text-gold font-medium tracking-widest uppercase text-sm">Visite Nosso Espaço</span>
+                <h2 class="text-3xl md:text-5xl font-serif mt-2 text-dark">Agende seu horário</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 glass shadow-2xl rounded-[40px] overflow-hidden border border-gold/20" data-aos="zoom-in">
+                <div class="p-10 md:p-16 bg-white/80">
+                    <h3 class="text-3xl font-serif mb-4 text-dark">Fale Conosco</h3>
+                    <p class="text-gray-600 mb-10 font-light">Preencha o formulário para nossa equipe entrar em contato ou chame no WhatsApp.</p>
+                    
+                    <form action="#" method="POST" class="space-y-5 mb-10">
+                        <div>
+                            <input type="text" placeholder="Nome Completo" required class="w-full px-6 py-4 rounded-full border border-gray-200 bg-white/50 text-dark placeholder-gray-500 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition hoverable">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="WhatsApp" required class="w-full px-6 py-4 rounded-full border border-gray-200 bg-white/50 text-dark placeholder-gray-500 focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition hoverable">
+                        </div>
+                        <button type="submit" class="btn-shine w-full bg-dark text-white font-medium py-4 rounded-full hover:bg-gold transition duration-300 hoverable overflow-hidden relative">
+                            Solicitar Agendamento
+                        </button>
+                    </form>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full glass border border-gold/30 flex items-center justify-center text-gold flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,22Z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">Bela Vista, São Paulo</h4>
+                                <p class="text-gray-500 text-sm font-light">R. Maestro Cardim, 560 - Sala 205</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-[300px] md:h-96 lg:h-auto lg:min-h-[500px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.170560249524!2d-46.6464438237593!3d-23.562305561623512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a68e0d6b5d%3A0xc3f8e5f22e23d6!2sR.%20Maestro%20Cardim%2C%20560%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001323-000!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="hoverable">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="bg-white relative z-20 py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-16" data-aos="fade-in">
+                <span class="text-gold font-medium tracking-widest uppercase text-sm">Tire Suas Dúvidas</span>
+                <h2 class="text-3xl md:text-5xl font-serif mt-2 text-dark">Perguntas Frequentes</h2>
+            </div>
+            
+            <div class="space-y-4" data-aos="fade-up">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item glass rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 hover:border-gold/20">
+                    <button class="faq-button w-full text-left px-8 py-6 flex justify-between items-center focus:outline-none hoverable">
+                        <span class="font-serif text-xl text-dark">A avaliação é gratuita?</span>
+                        <svg class="faq-icon w-6 h-6 text-gold transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-8 bg-marble-bg/30">
+                        <p class="py-6 text-gray-600 font-light border-t border-gray-100">Sim! Nossa avaliação inicial é um momento exclusivo para entendermos suas necessidades e montarmos um protocolo 100% personalizado para a sua pele, sem custo algum.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item glass rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 hover:border-gold/20">
+                    <button class="faq-button w-full text-left px-8 py-6 flex justify-between items-center focus:outline-none hoverable">
+                        <span class="font-serif text-xl text-dark">A depilação a laser dói?</span>
+                        <svg class="faq-icon w-6 h-6 text-gold transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-8 bg-marble-bg/30">
+                        <p class="py-6 text-gray-600 font-light border-t border-gray-100">Trabalhamos com a mais alta tecnologia em laser, que possui um sistema avançado de resfriamento na ponteira. Isso torna o procedimento extremamente confortável, rápido e praticamente indolor.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item glass rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 hover:border-gold/20">
+                    <button class="faq-button w-full text-left px-8 py-6 flex justify-between items-center focus:outline-none hoverable">
+                        <span class="font-serif text-xl text-dark">Quais as formas de pagamento?</span>
+                        <svg class="faq-icon w-6 h-6 text-gold transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-8 bg-marble-bg/30">
+                        <p class="py-6 text-gray-600 font-light border-t border-gray-100">Aceitamos cartões de crédito (parcelamos em até 12x), débito, PIX e dinheiro. Criamos condições facilitadas para que você possa investir na sua beleza e bem-estar sem preocupações.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item glass rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 hover:border-gold/20">
+                    <button class="faq-button w-full text-left px-8 py-6 flex justify-between items-center focus:outline-none hoverable">
+                        <span class="font-serif text-xl text-dark">Quanto tempo duram os resultados do Botox?</span>
+                        <svg class="faq-icon w-6 h-6 text-gold transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out px-8 bg-marble-bg/30">
+                        <p class="py-6 text-gray-600 font-light border-t border-gray-100">Os efeitos da toxina botulínica geralmente duram entre 4 a 6 meses, variando de acordo com o metabolismo de cada paciente e a força muscular da região tratada. Nossas aplicações garantem um resultado extremamente natural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-16 border-t border-white/5 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="block mb-6 hoverable w-max">
+                        <img src="./images/logo.png" alt="Zarah Flor Logo" class="h-14 w-auto object-contain brightness-0 invert opacity-90">
+                    </a>
+                    <p class="text-sm max-w-sm mb-6 font-light">Clínica de estética avançada em São Paulo, especializada em realçar sua beleza natural com protocolos personalizados.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm font-light">
+                        <li><a href="#servicos" class="hover:text-gold transition hoverable">Tratamentos</a></li>
+                        <li><a href="#sobre" class="hover:text-gold transition hoverable">Sobre Nós</a></li>
+                        <li><a href="#contato" class="hover:text-gold transition hoverable">Agendamento</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Contato</h4>
+                    <ul class="space-y-2 text-sm font-light">
+                        <li>R. Maestro Cardim, 560</li>
+                        <li>São Paulo - SP</li>
+                        <li>+55 11 97065-3411</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex justify-between items-center text-xs font-light">
+                <p>&copy; 2026 Clínica de Estética - Zarah Flor. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511970653411" target="_blank" 
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-[#25D366]/40 transition-all duration-300 hoverable group"
+       aria-label="Fale conosco no WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23-7.4,11.1a8,8,0,0,0-.69,8.73A56.6,56.6,0,0,0,125.71,146a8,8,0,0,0,8.73-.69l11.1-7.4,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"></path></svg>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Loader Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            // Give it a minimum of 1 second so the user appreciates the luxury animation
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                document.body.classList.remove('loading');
+                
+                // Initialize animations after loader fades out to prevent glitchy entry
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
+                }, 1000);
+            }, 1000);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const hoverables = document.querySelectorAll('.hoverable, a, button, input');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Mobile Menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // FAQ Accordion
+        const faqButtons = document.querySelectorAll('.faq-button');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const faqAnswer = button.nextElementSibling;
+                const faqIcon = button.querySelector('.faq-icon');
+                
+                const isOpen = faqItem.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    item.classList.remove('shadow-lg', 'border-gold/50');
+                });
+
+                if (!isOpen) {
+                    faqItem.classList.add('active', 'shadow-lg', 'border-gold/50');
+                    faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
+                    faqIcon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
