@@ -42,13 +42,17 @@
         /* Custom Cursor */
         @media (pointer: fine) {
             *, *::before, *::after { cursor: none !important; }
+            /* Restore normal cursors in the contact section */
+            #contato, #contato * { cursor: auto !important; }
+            #contato a, #contato button, #contato .hoverable { cursor: pointer !important; }
+            #contato input { cursor: text !important; }
         }
         
         .custom-cursor {
             width: 20px; height: 20px;
             border: 2px solid #C5A059; border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9999;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, opacity 0.2s ease;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
         }
@@ -539,6 +543,13 @@
             document.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
+                
+                // Oculta a argola quando passar sobre a seção de contato
+                if (e.target.closest('#contato')) {
+                    cursor.style.opacity = '0';
+                } else {
+                    cursor.style.opacity = '1';
+                }
             });
 
             hoverables.forEach(el => {
