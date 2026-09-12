@@ -40,7 +40,9 @@
     </script>
     <style>
         /* Custom Cursor */
-        body { cursor: none; }
+        @media (pointer: fine) {
+            *, *::before, *::after { cursor: none !important; }
+        }
         
         .custom-cursor {
             width: 20px; height: 20px;
@@ -529,17 +531,24 @@
 
         // Custom Cursor
         const cursor = document.getElementById('cursor');
-        const hoverables = document.querySelectorAll('.hoverable, a, button, input');
+        
+        // Only run custom cursor logic if device has a mouse (pointer: fine)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const hoverables = document.querySelectorAll('.hoverable, a, button, input');
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
 
-        hoverables.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        } else {
+            // Hide custom cursor completely on touch devices
+            cursor.style.display = 'none';
+        }
 
         // Mobile Menu
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
